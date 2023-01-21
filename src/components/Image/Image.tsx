@@ -1,19 +1,13 @@
 import React, { MouseEvent } from "react";
-import hotlineImage from "../../assets/images/main-image/hotline-miami-image.webp";
 
 interface ImageProps {
-  handleTag?: (e: MouseEvent<HTMLImageElement>) => void;
+  src: string;
+  alt: string;
+  name: string;
 }
 
-const Image = ({ handleTag }: ImageProps) => {
-  return (
-    <img
-      src={hotlineImage}
-      alt="tag hotline miami character"
-      className="hotline-miami-img"
-    />
-  );
+const Image = ({ src, alt, name }: ImageProps) => {
+  return <img src={src} alt={alt} className="hotline-miami-img" />;
 };
 
 export default Image;
-
