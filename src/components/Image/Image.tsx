@@ -8,7 +8,6 @@ interface ImageProps {
 const Image = ({ handleTag }: ImageProps) => {
   return (
     <img
-      onClick={handleTag}
       src={hotlineImage}
       alt="tag hotline miami character"
       className="hotline-miami-img"
@@ -18,18 +17,3 @@ const Image = ({ handleTag }: ImageProps) => {
 
 export default Image;
 
-/* pageX
-: 
-616
-pageY
-: 
-371
-relatedTarget
-: 
-null
-screenX
-: 
-2536
-screenY
-: 
-477 */
