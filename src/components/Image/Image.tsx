@@ -1,5 +1,5 @@
 import React, { MouseEvent } from "react";
-import hotlineImage from "../../assets/images/hotline-miami-image.webp";
+import hotlineImage from "../../assets/images/main-image/hotline-miami-image.webp";
 
 interface ImageProps {
   handleTag?: (e: MouseEvent<HTMLImageElement>) => void;
