@@ -1,0 +1,8 @@
+.character-dropdown {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  border: 5px solid pink;
+  width: 4rem;
+  height: 4rem;
+}
