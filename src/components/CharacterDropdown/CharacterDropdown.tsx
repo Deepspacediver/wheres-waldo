@@ -1,22 +1,28 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, forwardRef, ForwardedRef } from "react";
 import "./CharacterDropdown.styles.css";
 
-export interface CharacterDropdownProps {
+export interface CharacterDropdownType {
   left: number;
   top: number;
   isActive: boolean;
 }
-const CharacterDropdown = ({ left, top, isActive }: CharacterDropdownProps) => {
-  return (
-    <>
-      {isActive && (
-        <div
-          className="character-dropdown"
-          style={{ left: `${left}%`, top: `${top}%` }}
-        ></div>
-      )}
-    </>
-  );
-};
+
+export type CharacterRef = HTMLDivElement;
+
+const CharacterDropdown = forwardRef<CharacterRef, CharacterDropdownType>(
+  ({ left, top, isActive }, ref) => {
+    return (
+      <>
+        {isActive && (
+          <div
+            className="character-dropdown"
+            style={{ left: `${left}%`, top: `${top}%` }}
+            ref={ref}
+          ></div>
+        )}
+      </>
+    );
+  }
+);
 
 export default CharacterDropdown;
