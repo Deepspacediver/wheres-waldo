@@ -1,7 +1,7 @@
-import { useState, ReactNode, forwardRef, ForwardedRef } from "react";
-import "./CharacterDropdown.styles.css";
+import { forwardRef } from "react";
+import "./TargetingBox.styles.css";
 
-export interface CharacterDropdownType {
+export interface TargetingBoxProps {
   left: number;
   top: number;
   isActive: boolean;
@@ -9,7 +9,7 @@ export interface CharacterDropdownType {
 
 export type CharacterRef = HTMLDivElement;
 
-const CharacterDropdown = forwardRef<CharacterRef, CharacterDropdownType>(
+const TargetingBox = forwardRef<CharacterRef, TargetingBoxProps>(
   ({ left, top, isActive }, ref) => {
     return (
       <>
@@ -25,4 +25,4 @@ const CharacterDropdown = forwardRef<CharacterRef, CharacterDropdownType>(
   }
 );
 
-export default CharacterDropdown;
+export default TargetingBox;

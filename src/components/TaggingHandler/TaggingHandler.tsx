@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MouseEvent } from "react";
 import Image from "../Image/Image";
-import CharacterDropdown from "../CharacterDropdown/CharacterDropdown";
+import TargetingBox from "../TargetingBox/TargetingBox";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";
 import "./TaggingHandler.styles.css";
 
@@ -23,25 +23,25 @@ const TaggingHandler = () => {
     if (!isActive) return;
 
     const getTargetLocation = () => {
-      const dropdownRect = dropdownRef.current?.getBoundingClientRect();
+      const targetingBoxRect = dropdownRef.current?.getBoundingClientRect();
       const parentRect =
         dropdownRef.current?.parentElement?.getBoundingClientRect();
 
-      if (!dropdownRect || !parentRect) return;
+      if (!targetingBoxRect || !parentRect) return;
       const { x, y } = cursorCoords;
-      const calculatedLeft = x - dropdownRect.width / 2;
-      const calculatedTop = y - dropdownRect.height / 2;
+      const calculatedLeft = x - targetingBoxRect.width / 2;
+      const calculatedTop = y - targetingBoxRect.height / 2;
 
       const topCoord =
         ((calculatedTop - parentRect.top) / parentRect.height) * 100;
       const leftCoord =
         ((calculatedLeft - parentRect.left) / parentRect.width) * 100;
       const bottomCoord =
-        ((calculatedTop - parentRect.top + dropdownRect.height) /
+        ((calculatedTop - parentRect.top + targetingBoxRect.height) /
           parentRect.height) *
         100;
       const rightCoord =
-        ((calculatedLeft - parentRect.left + dropdownRect.width) /
+        ((calculatedLeft - parentRect.left + targetingBoxRect.width) /
           parentRect.width) *
         100;
 
@@ -82,7 +82,7 @@ const TaggingHandler = () => {
           alt="hotline miami characters"
           name="main-background"
         />
-        <CharacterDropdown
+        <TargetingBox
           ref={dropdownRef}
           left={left}
           top={top}
