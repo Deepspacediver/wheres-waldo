@@ -1,5 +1,5 @@
 .image-wrapper {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: fit-content;
 }
