@@ -1,10 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MouseEvent } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import getCharacterPositions, {
-  charactersCol,
-} from "../../firebase/firebase-config";
-import type { Characters } from "../../firebase/firebase-config";
+import getCharacterPositions from "../../firebase/firebase-config";
+import type { Characters } from "../../common/types";
 import Image from "../Image/Image";
 import TargetingBox from "../TargetingBox/TargetingBox";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";

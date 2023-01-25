@@ -1,13 +1,14 @@
 import { useRef } from "react";
+import { MouseEvent } from "react";
+import type { CharacterCoords, Characters } from "../../common/types";
 import "./TargetingBox.styles.css";
 
-export interface TargetingBoxProps {
+interface TargetingBoxProps {
   left: number;
   top: number;
   isActive: boolean;
+  charactersLocations?: Characters;
 }
-
-export type CharacterRef = HTMLDivElement;
 
 const TargetingBox = ({ left, top, isActive }: TargetingBoxProps) => {
   const targetingBoxRef = useRef<HTMLDivElement>(null);
@@ -35,8 +36,6 @@ const TargetingBox = ({ left, top, isActive }: TargetingBoxProps) => {
       ((calculatedLeft - parentRect.left + targetingBoxRect.width) /
         parentRect.width) *
       100;
-
-    console.log({ topCoord, leftCoord, bottomCoord, rightCoord });
   };
 
   return (

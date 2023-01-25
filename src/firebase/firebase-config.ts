@@ -7,18 +7,7 @@ import {
   collection,
   CollectionReference,
 } from "firebase/firestore";
-import { CpuInfo } from "os";
-import { Collection } from "typescript";
-
-interface CharacterCoords {
-  top: number;
-  left: number;
-  bottom: number;
-  right: number;
-}
-export interface Characters {
-  [key: string]: CharacterCoords;
-}
+import type { Characters } from "../common/types";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBNI7nZIoSJtVbMARKhYHpZjHQ9CJcV4I",
