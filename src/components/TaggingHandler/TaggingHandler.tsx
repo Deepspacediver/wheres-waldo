@@ -1,4 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 import { MouseEvent } from "react";
 import getCharacterPositions from "../../firebase/firebase-config";
 import type { Characters } from "../../common/types";
@@ -13,6 +17,7 @@ const TaggingHandler = () => {
     left: 0,
     top: 0,
   });
+  const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
   const charactersLocations = useRef<Characters>();
 
   useEffect(() => {
@@ -28,6 +33,7 @@ const TaggingHandler = () => {
 
   const handleTag = (e: MouseEvent) => {
     console.log(charactersLocations.current);
+    console.log(foundCharacters);
     const target = e.target as HTMLElement;
     if (target.classList.contains("btn")) return;
 
@@ -39,6 +45,20 @@ const TaggingHandler = () => {
     });
   };
 
+  const capitalize = (x: string) => x[0].toUpperCase() + x.slice(1);
+
+  const charChoiceElement = (characterName: string) =>
+    !foundCharacters.includes(characterName) && (
+      <li>
+        <button className="btn btn__character-choice">
+          {capitalize(characterName)}
+        </button>
+      </li>
+    );
+
+  const addFoundCharacter = (characterName: string) =>
+    setFoundCharacters((prevState) => [...prevState, characterName]);
+
   const { left, top } = cursorCoords;
   return (
     <>
@@ -48,7 +68,14 @@ const TaggingHandler = () => {
           alt="hotline miami characters"
           name="main-background"
         />
-        <TargetingBox left={left} top={top} isActive={isActive} />
+        <TargetingBox
+          left={left}
+          top={top}
+          isActive={isActive}
+          charactersPosition={charactersLocations.current}
+          charChoiceElement={charChoiceElement}
+          addFoundCharacter={addFoundCharacter}
+        />
       </div>
     </>
   );
