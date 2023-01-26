@@ -89,8 +89,8 @@ const TargetingBox = ({
   };
 
   const helmetLi = charChoiceElement("helmet");
-  const richardLi = charChoiceElement("rasmus");
-  const rasmusLi = charChoiceElement("richard");
+  const richardLi = charChoiceElement("richard");
+  const rasmusLi = charChoiceElement("rasmus");
 
   return (
     <>
