@@ -1,10 +1,7 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MouseEvent } from "react";
 import getCharacterPositions from "../../firebase/firebase-config";
+import { capitalize } from "../../helpers/utilFunctions";
 import type { Characters } from "../../common/types";
 import Image from "../Image/Image";
 import TargetingBox from "../TargetingBox/TargetingBox";
@@ -44,8 +41,6 @@ const TaggingHandler = () => {
       top: e.clientY,
     });
   };
-
-  const capitalize = (x: string) => x[0].toUpperCase() + x.slice(1);
 
   const charChoiceElement = (characterName: string) =>
     !foundCharacters.includes(characterName) && (
