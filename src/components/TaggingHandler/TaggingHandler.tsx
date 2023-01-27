@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { MouseEvent } from "react";
 import getCharacterPositions from "../../firebase/firebase-config";
 import { capitalize } from "../../helpers/utilFunctions";
-import type { Characters } from "../../common/types";
+import type { Characters, FoundLocations } from "../../common/types";
 import Image from "../Image/Image";
 import TargetingBox from "../TargetingBox/TargetingBox";
 import Stopwatch from "../Stopwatch/Stopwatch";
+import FoundTag from "../FoundTag/FoundTag";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";
 import "./TaggingHandler.styles.css";
 
@@ -16,6 +17,7 @@ const TaggingHandler = () => {
     top: 0,
   });
   const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
+  const [foundLocations, setFoundLocations] = useState<FoundLocations>([]);
   const charactersLocations = useRef<Characters>();
   console.log(isActive);
   useEffect(() => {
@@ -77,7 +79,14 @@ const TaggingHandler = () => {
           charChoiceElement={charChoiceElement}
           addFoundCharacter={addFoundCharacter}
           setIsActive={setIsActive}
+          setFoundLocations={setFoundLocations}
         />
+        {foundLocations.length !== 0 &&
+          foundLocations.map((loc, i) => {
+            return (
+              <FoundTag key={i} left={loc.left} top={loc.top} name={loc.name} />
+            );
+          })}
       </div>
       <Stopwatch isGameOver={isGameOver} />
     </>

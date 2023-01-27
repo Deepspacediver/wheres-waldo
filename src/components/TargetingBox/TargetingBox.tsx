@@ -1,5 +1,16 @@
-import { useRef, MouseEvent, ReactElement } from "react";
-import type { CharacterCoords, Characters } from "../../common/types";
+import {
+  useRef,
+  MouseEvent,
+  ReactElement,
+  Dispatch,
+  SetStateAction,
+} from "react";
+import { capitalize } from "../../helpers/utilFunctions";
+import type {
+  CharacterCoords,
+  Characters,
+  FoundLocations,
+} from "../../common/types";
 import "./TargetingBox.styles.css";
 
 interface TargetingBoxProps {
@@ -7,6 +18,8 @@ interface TargetingBoxProps {
   top: number;
   isActive: boolean;
   charactersPosition: Characters | undefined;
+  setIsActive: Dispatch<SetStateAction<boolean>>;
+  setFoundLocations: Dispatch<SetStateAction<FoundLocations>>;
   charChoiceElement: (characterName: string) => ReactElement | false;
   addFoundCharacter: (characterName: string) => void;
 }
@@ -16,8 +29,10 @@ const TargetingBox = ({
   top,
   isActive,
   charactersPosition,
+  setIsActive,
   charChoiceElement,
   addFoundCharacter,
+  setFoundLocations,
 }: TargetingBoxProps) => {
   const targetingBoxRef = useRef<HTMLDivElement>(null);
 
@@ -69,8 +84,8 @@ const TargetingBox = ({
 
   const validateTarget = (e: MouseEvent<HTMLUListElement>) => {
     const button = e.target as HTMLButtonElement;
-    console.log(button);
     if (!button.classList.contains("btn__character-choice")) return;
+
     const characterName = button.textContent?.toLowerCase();
     const targetingBoxPosition = getTargetLocation();
     if (!characterName || !targetingBoxPosition || !charactersPosition) return;
@@ -81,11 +96,17 @@ const TargetingBox = ({
     );
     if (isOverlapping) {
       addFoundCharacter(characterName);
-    }
-
+      setFoundLocations((prevState) => [
+        ...prevState,
+        { left: left, top: top, name: characterName },
+      ]);
+      console.log(`You found ${capitalize(characterName)}!`);
+    } else console.log(`That's not ${capitalize(characterName)}, try again.`);
     // User clicked btn => get text content => call getTargetLocation =>
     // => compare return of targetLocation and fetchedData with
     // corresponding name from the event
+    setIsActive(false);
+    console.log("bruh")
   };
 
   const helmetLi = charChoiceElement("helmet");
