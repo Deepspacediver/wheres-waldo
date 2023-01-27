@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { MouseEvent } from "react";
 import getCharacterPositions from "../../firebase/firebase-config";
 import { capitalize } from "../../helpers/utilFunctions";
 import type { Characters } from "../../common/types";
 import Image from "../Image/Image";
 import TargetingBox from "../TargetingBox/TargetingBox";
+import Stopwatch from "../Stopwatch/Stopwatch";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";
 import "./TaggingHandler.styles.css";
 
@@ -31,9 +32,11 @@ const TaggingHandler = () => {
   const handleTag = (e: MouseEvent) => {
     // console.log(charactersLocations.current);
     // console.log(foundCharacters);
+    console.log(isGameOver());
     const target = e.target as HTMLImageElement;
     if (target.tagName !== "IMG") return;
     setIsActive((prevState) => !prevState);
+    console.log(target);
     setCursorCoords({
       left: e.clientX - target.getBoundingClientRect().left,
       top: e.clientY - target.getBoundingClientRect().top,
@@ -51,6 +54,11 @@ const TaggingHandler = () => {
 
   const addFoundCharacter = (characterName: string) =>
     setFoundCharacters((prevState) => [...prevState, characterName]);
+
+  const isGameOver = useCallback(
+    () => foundCharacters.length === 3,
+    [foundCharacters.length]
+  );
 
   const { left, top } = cursorCoords;
   return (
@@ -71,6 +79,7 @@ const TaggingHandler = () => {
           setIsActive={setIsActive}
         />
       </div>
+      <Stopwatch isGameOver={isGameOver} />
     </>
   );
 };
