@@ -16,7 +16,7 @@ const TaggingHandler = () => {
   });
   const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
   const charactersLocations = useRef<Characters>();
-
+  console.log(isActive);
   useEffect(() => {
     let mounted = true;
     getCharacterPositions().then((data) => {
@@ -29,16 +29,14 @@ const TaggingHandler = () => {
   }, []);
 
   const handleTag = (e: MouseEvent) => {
-    console.log(charactersLocations.current);
-    console.log(foundCharacters);
-    const target = e.target as HTMLElement;
-    if (target.classList.contains("btn")) return;
-
+    // console.log(charactersLocations.current);
+    // console.log(foundCharacters);
+    const target = e.target as HTMLImageElement;
+    if (target.tagName !== "IMG") return;
     setIsActive((prevState) => !prevState);
-    console.log(e.clientX, e.clientY);
     setCursorCoords({
-      left: e.clientX,
-      top: e.clientY,
+      left: e.clientX - target.getBoundingClientRect().left,
+      top: e.clientY - target.getBoundingClientRect().top,
     });
   };
 
@@ -70,6 +68,7 @@ const TaggingHandler = () => {
           charactersPosition={charactersLocations.current}
           charChoiceElement={charChoiceElement}
           addFoundCharacter={addFoundCharacter}
+          setIsActive={setIsActive}
         />
       </div>
     </>
