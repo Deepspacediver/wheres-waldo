@@ -9,7 +9,7 @@ import { capitalize } from "../../helpers/utilFunctions";
 import type {
   CharacterCoords,
   Characters,
-  FoundLocations,
+  FoundCharacters,
 } from "../../common/types";
 import "./TargetingBox.styles.css";
 
@@ -18,10 +18,8 @@ interface TargetingBoxProps {
   top: number;
   isActive: boolean;
   charactersPosition: Characters | undefined;
-  setIsActive: Dispatch<SetStateAction<boolean>>;
-  setFoundLocations: Dispatch<SetStateAction<FoundLocations>>;
+  setFoundCharacters: Dispatch<SetStateAction<FoundCharacters>>;
   charChoiceElement: (characterName: string) => ReactElement | false;
-  addFoundCharacter: (characterName: string) => void;
 }
 
 const TargetingBox = ({
@@ -29,10 +27,8 @@ const TargetingBox = ({
   top,
   isActive,
   charactersPosition,
-  setIsActive,
   charChoiceElement,
-  addFoundCharacter,
-  setFoundLocations,
+  setFoundCharacters,
 }: TargetingBoxProps) => {
   const targetingBoxRef = useRef<HTMLDivElement>(null);
 
@@ -95,18 +91,23 @@ const TargetingBox = ({
       charactersPosition[characterName]
     );
     if (isOverlapping) {
-      addFoundCharacter(characterName);
-      setFoundLocations((prevState) => [
+      // Left and top is set from cursorCoords
+      // with calculated offset to position FoundTag properly
+      setFoundCharacters((prevState) => [
         ...prevState,
-        { left: left, top: top, name: characterName },
+        {
+          right: targetingBoxPosition.right,
+          bottom: targetingBoxPosition.bottom,
+          left,
+          top,
+          name: characterName,
+        },
       ]);
       console.log(`You found ${capitalize(characterName)}!`);
     } else console.log(`That's not ${capitalize(characterName)}, try again.`);
     // User clicked btn => get text content => call getTargetLocation =>
     // => compare return of targetLocation and fetchedData with
     // corresponding name from the event
-    setIsActive(false);
-    console.log("bruh")
   };
 
   const helmetLi = charChoiceElement("helmet");
