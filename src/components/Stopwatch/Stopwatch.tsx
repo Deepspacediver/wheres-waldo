@@ -10,9 +10,12 @@ const Stopwatch = memo(({ isGameOver }: StopwatchProps) => {
   const [startTime, setStartTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const intervalRef = useRef<Timer | null>(null);
+  console.log("stopwatch");
 
   useEffect(() => {
-    if (isGameOver() && intervalRef.current) clearInterval(intervalRef.current);
+    if (isGameOver() && intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
   }, [isGameOver]);
 
   const startStopwatch = (e: MouseEvent<HTMLButtonElement>) => {
@@ -23,14 +26,22 @@ const Stopwatch = memo(({ isGameOver }: StopwatchProps) => {
   };
 
   let timePassed = 0;
+  let minutes = 0;
+  let seconds = 0;
 
   if (startTime && currentTime) {
     timePassed = (currentTime - startTime) / 1000;
+    minutes = Math.trunc(timePassed / 60);
+    seconds = Math.trunc(timePassed % 60);
   }
 
   return (
     <div>
-      <div>{timePassed.toFixed(2)}</div>
+      <div>{timePassed}</div>
+      <div>
+        {minutes < 10 ? "0" + minutes : minutes}:
+        {seconds < 10 ? "0" + seconds : seconds}
+      </div>
       <button onClick={startStopwatch}> Start</button>
     </div>
   );
