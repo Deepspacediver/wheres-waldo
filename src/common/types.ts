@@ -13,3 +13,10 @@ export interface FoundCharacter extends CharacterCoords {
 }
 
 export type FoundCharacters = FoundCharacter[];
+
+export interface Player {
+  name: string;
+  time: number;
+}
+
+export type PlayerList = Player[];
