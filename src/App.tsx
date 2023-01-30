@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
+import GameContainer from "./components/GameContainer/GameContainer";
 
 function App() {
-  return (
-    <div>hi</div>
-  );
+  return <GameContainer />;
 }
 
 export default App;
