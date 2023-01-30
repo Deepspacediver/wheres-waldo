@@ -5,21 +5,30 @@ import { capitalize } from "../../helpers/utilFunctions";
 import type {
   Characters,
   FoundCharacters,
+  PlayerGuessResult,
 } from "../../common/types";
 import Image from "../Image/Image";
 import TargetingBox from "../TargetingBox/TargetingBox";
 import Stopwatch from "../Stopwatch/Stopwatch";
 import FoundTag from "../FoundTag/FoundTag";
+import TagFeedback from "../TagFeedback/TagFeedback";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";
 import "./TaggingHandler.styles.css";
 
-const TaggingHandler = () => {
+interface TaggingHandlerProps {
+  canStartGame: boolean;
+}
+
+const TaggingHandler = ({ canStartGame }: TaggingHandlerProps) => {
   const [isActive, setIsActive] = useState(false);
   const [cursorCoords, setCursorCoords] = useState({
     left: 0,
     top: 0,
   });
   const [foundCharacters, setFoundCharacters] = useState<FoundCharacters>([]);
+  const [feedbackStyle, setFeedbackStyle] = useState<PlayerGuessResult | null>(
+    null
+  );
   const charactersLocations = useRef<Characters>();
 
   useEffect(() => {
@@ -32,11 +41,7 @@ const TaggingHandler = () => {
       mounted = false;
     };
   }, []);
-
   const handleTag = (e: MouseEvent) => {
-    // console.log(charactersLocations.current);
-    // console.log(foundCharacters);
-    // console.log(isGameOver());
     const target = e.target as HTMLImageElement;
     setIsActive((prevState) => !prevState);
     if (target.tagName !== "IMG") return;
@@ -84,6 +89,7 @@ const TaggingHandler = () => {
           charactersPosition={charactersLocations.current}
           charChoiceElement={charChoiceElement}
           setFoundCharacters={setFoundCharacters}
+          setFeedbackStyle={setFeedbackStyle}
         />
         {foundCharacters.length !== 0 &&
           foundCharacters.map((char, i) => {
@@ -97,7 +103,14 @@ const TaggingHandler = () => {
             );
           })}
       </div>
-      <Stopwatch isGameOver={isGameOver} />
+      <Stopwatch isGameOver={isGameOver} canStartGame={canStartGame} />
+      {feedbackStyle && (
+        <TagFeedback
+          isCorrect={feedbackStyle.isCorrect}
+          characterName={feedbackStyle.characterName}
+          TargetBoxLeftCoord={feedbackStyle.TargetBoxLeftCoord}
+        />
+      )}
     </>
   );
 };

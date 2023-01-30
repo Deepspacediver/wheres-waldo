@@ -10,6 +10,7 @@ import type {
   CharacterCoords,
   Characters,
   FoundCharacters,
+  PlayerGuessResult,
 } from "../../common/types";
 import "./TargetingBox.styles.css";
 
@@ -20,6 +21,7 @@ interface TargetingBoxProps {
   charactersPosition: Characters | undefined;
   setFoundCharacters: Dispatch<SetStateAction<FoundCharacters>>;
   charChoiceElement: (characterName: string) => ReactElement | false;
+  setFeedbackStyle: Dispatch<SetStateAction<PlayerGuessResult | null>>;
 }
 
 const TargetingBox = ({
@@ -29,6 +31,7 @@ const TargetingBox = ({
   charactersPosition,
   charChoiceElement,
   setFoundCharacters,
+  setFeedbackStyle,
 }: TargetingBoxProps) => {
   const targetingBoxRef = useRef<HTMLDivElement>(null);
 
@@ -103,8 +106,20 @@ const TargetingBox = ({
           name: characterName,
         },
       ]);
+      setFeedbackStyle({
+        characterName: characterName,
+        isCorrect: true,
+        TargetBoxLeftCoord: left,
+      });
       console.log(`You found ${capitalize(characterName)}!`);
-    } else console.log(`That's not ${capitalize(characterName)}, try again.`);
+    } else {
+      setFeedbackStyle({
+        characterName: characterName,
+        isCorrect: false,
+        TargetBoxLeftCoord: left,
+      });
+      console.log(`That's not ${capitalize(characterName)}, try again.`);
+    }
     // User clicked btn => get text content => call getTargetLocation =>
     // => compare return of targetLocation and fetchedData with
     // corresponding name from the event
