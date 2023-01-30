@@ -41,8 +41,8 @@ const Scoreboard = () => {
       <ul onClick={() => console.log(topPlayers)}>
         {topPlayers.length &&
           topPlayers.map(({ name, time }, i) => (
-            <li>
-              <PlayerScore key={i} name={name} time={time} />
+            <li key={i}>
+              <PlayerScore name={name} time={time} />
             </li>
           ))}
       </ul>
