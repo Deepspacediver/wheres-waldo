@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface CharacterCoords {
   top: number;
   left: number;
@@ -20,3 +22,13 @@ export interface Player {
 }
 
 export type PlayerList = Player[];
+
+export interface ChildrenAsProps {
+  children?: ReactNode;
+}
+
+export interface PlayerGuessResult {
+  isCorrect: boolean;
+  characterName: string;
+  TargetBoxLeftCoord: number;
+}
