@@ -46,19 +46,13 @@ const TargetingBox = ({
     const calculatedLeft = left - targetingBoxRect.width / 2;
     const calculatedTop = top - targetingBoxRect.height / 2;
 
-    const topCoord =
-      ((calculatedTop - parentRect.top) / parentRect.height) * 100;
-    const leftCoord =
-      ((calculatedLeft - parentRect.left) / parentRect.width) * 100;
+    const topCoord = (calculatedTop / parentRect.height) * 100;
+    const leftCoord = (calculatedLeft / parentRect.width) * 100;
     console.log({ leftCoord });
     const bottomCoord =
-      ((calculatedTop - parentRect.top + targetingBoxRect.height) /
-        parentRect.height) *
-      100;
+      ((calculatedTop + targetingBoxRect.height) / parentRect.height) * 100;
     const rightCoord =
-      ((calculatedLeft - parentRect.left + targetingBoxRect.width) /
-        parentRect.width) *
-      100;
+      ((calculatedLeft + targetingBoxRect.width) / parentRect.width) * 100;
 
     // console.log({ topCoord, leftCoord, bottomCoord, rightCoord });
     return {
