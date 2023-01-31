@@ -1,7 +1,7 @@
 .targeting-box {
   position: absolute;
-  top: 20%;
-  left: 50%;
+  /* top: 20%; */
+  /* left: 50%; */
   border: 5px solid pink;
   width: 5rem;
   height: 5rem;
@@ -10,6 +10,6 @@
 
 .targeting-box_list {
   position: absolute;
-  left: 100%;
-  top: 100%;
+  top: 105%;
 }
+
