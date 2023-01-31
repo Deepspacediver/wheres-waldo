@@ -5,6 +5,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { CSSTransition } from "react-transition-group";
 import { capitalize } from "../../helpers/utilFunctions";
 import type {
   CharacterCoords,
@@ -34,6 +35,7 @@ const TargetingBox = ({
   setFeedbackStyle,
 }: TargetingBoxProps) => {
   const targetingBoxRef = useRef<HTMLDivElement>(null);
+  const divWrappRef = useRef<HTMLDivElement>(null);
 
   const getTargetLocation = () => {
     const targetingBoxRect = targetingBoxRef.current?.getBoundingClientRect();
@@ -42,7 +44,6 @@ const TargetingBox = ({
 
     if (!targetingBoxRect || !parentRect) return;
     const calculatedLeft = left - targetingBoxRect.width / 2;
-    console.log({ calculatedLeft });
     const calculatedTop = top - targetingBoxRect.height / 2;
 
     const topCoord =
@@ -59,7 +60,7 @@ const TargetingBox = ({
         parentRect.width) *
       100;
 
-    console.log({ topCoord, leftCoord, bottomCoord, rightCoord });
+    // console.log({ topCoord, leftCoord, bottomCoord, rightCoord });
     return {
       top: topCoord,
       left: leftCoord,
@@ -120,9 +121,6 @@ const TargetingBox = ({
       });
       console.log(`That's not ${capitalize(characterName)}, try again.`);
     }
-    // User clicked btn => get text content => call getTargetLocation =>
-    // => compare return of targetLocation and fetchedData with
-    // corresponding name from the event
   };
 
   const helmetLi = charChoiceElement("helmet");
@@ -131,19 +129,39 @@ const TargetingBox = ({
 
   return (
     <>
-      {isActive && (
+      {/* {isActive && ( */}
+      <CSSTransition
+        classNames="targeting-box"
+        in={isActive}
+        timeout={70}
+        unmountOnExit
+        nodeRef={targetingBoxRef}
+      >
         <div
           className="targeting-box"
           style={{ left: `${left}px`, top: `${top}px` }}
           ref={targetingBoxRef}
         >
-          <ul className="targeting-box_list" onClick={validateTarget}>
-            {helmetLi}
-            {richardLi}
-            {rasmusLi}
-          </ul>
+          <CSSTransition
+            classNames="targeting-box_list-wrapper"
+            in={isActive}
+            timeout={80}
+            unmountOnExit
+            nodeRef={divWrappRef}
+            appear
+          >
+            {/* Required nodeRef canncels transition on UL, wrapper fixes it */}
+            <div className="targeting-box_list-wrapper" ref={divWrappRef}>
+              <ul className="targeting-box_list" onClick={validateTarget}>
+                {helmetLi}
+                {richardLi}
+                {rasmusLi}
+              </ul>
+            </div>
+          </CSSTransition>
         </div>
-      )}
+      </CSSTransition>
+      {/* )} */}
     </>
   );
 };
