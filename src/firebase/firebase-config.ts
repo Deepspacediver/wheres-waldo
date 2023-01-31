@@ -7,7 +7,7 @@ import {
   collection,
   CollectionReference,
 } from "firebase/firestore";
-import type { Characters } from "../common/types";
+import type { Characters, PlayerList } from "../common/types";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBNI7nZIoSJtVbMARKhYHpZjHQ9CJcV4I",
@@ -38,5 +38,7 @@ const getCharacterPositions = async () => {
     console.error("Failed to get characters", err);
   }
 };
+
+export const playersCol = createCollection<PlayerList>("players");
 
 export default getCharacterPositions;
