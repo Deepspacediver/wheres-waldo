@@ -6,4 +6,4 @@ The Odin Project [Assignment](https://www.theodinproject.com/lessons/node-path-j
 
 React\
 TypeScript\
-Firebase\
+Firebase
