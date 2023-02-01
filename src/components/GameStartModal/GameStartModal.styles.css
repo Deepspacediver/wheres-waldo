@@ -1,0 +1,59 @@
+.game-start-modal {
+  background: rgb(184, 53, 148);
+  background: radial-gradient(
+    circle,
+    rgba(184, 53, 148, 1) 0%,
+    rgba(71, 23, 88, 1) 100%
+  );
+  width: 90%;
+  max-width: 800px;
+  border-radius: 3rem;
+  text-align: center;
+  padding: 1rem;
+}
+.game-start-modal_title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+.game-start-modal_instructions {
+  margin-bottom: 1rem;
+}
+.game-start-modal_para {
+  color: var(--water-blue);
+  font-size: clamp(1rem, 3vw, 1.7rem);
+  font-weight: 700;
+}
+
+.game-start-modal_characters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-start-modal_character-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.game-start-modal_character-name {
+  color: var(--water-blue);
+  font-size: clamp(1.2rem, 5vw, 2.2rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.game-start-modal_modal-mask-img {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 12rem;
+}
