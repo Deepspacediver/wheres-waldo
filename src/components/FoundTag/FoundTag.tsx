@@ -8,7 +8,7 @@ interface FoundTagProps {
 
 const FoundTag = ({ left, top, name }: FoundTagProps) => {
   return (
-    <div className="found-tag" style={{ left: `${left}px`, top: `${top}px` }}>
+    <div className="found-tag" style={{ left: `${left}%`, top: `${top}%` }}>
       {name}
     </div>
   );

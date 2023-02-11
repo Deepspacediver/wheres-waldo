@@ -1,34 +1,32 @@
 .game-start-modal {
   background: rgb(184, 53, 148);
-  background: radial-gradient(
-    circle,
-    rgba(184, 53, 148, 1) 0%,
-    rgba(71, 23, 88, 1) 100%
-  );
-  width: 90%;
+  background: var(--gradient-bg);
   max-width: 800px;
   border-radius: 3rem;
   text-align: center;
   padding: 1rem;
+  margin: 2rem;
 }
-.game-start-modal_title-wrapper {
+.game-start-modal__title-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 600px;
+  padding-top: 0.2rem;
   margin: 0 auto;
   margin-bottom: 1rem;
 }
-.game-start-modal_instructions {
-  margin-bottom: 1rem;
+.game-start-modal__instructions {
+  margin-bottom: 2rem;
 }
-.game-start-modal_para {
+.game-start-modal__para {
   color: var(--water-blue);
-  font-size: clamp(1rem, 3vw, 1.7rem);
+  font-size: clamp(14px, 3vw, 1.3rem);
   font-weight: 700;
+  text-shadow: var(--para-text-shadow);
 }
 
-.game-start-modal_characters {
+.game-start-modal__characters {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-evenly;
@@ -36,24 +34,73 @@
   margin-bottom: 1rem;
 }
 
-.game-start-modal_character-wrapper {
+.character-wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 0.3rem;
+}
+.character-wrapper_modal {
+  background-color: var(--soft-pink);
   gap: 0.5rem;
+  -webkit-box-shadow: -1px 2px 14px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -1px 2px 14px 0px rgba(0, 0, 0, 1);
+  box-shadow: -1px 2px 14px 0px rgba(0, 0, 0, 1);
 }
 
-.game-start-modal_character-name {
-  color: var(--water-blue);
-  font-size: clamp(1.2rem, 5vw, 2.2rem);
+.character-wrapper__modal-mask-img {
+  margin: auto;
+  min-height: 4rem;
+  width: clamp(4rem, 11vw, 6rem);
+}
+.character-wrapper__character-name {
+  font-size: clamp(13px, 3vw, 1.5rem);
+  padding: 0 0.1rem;
   font-weight: bold;
   text-transform: uppercase;
   font-style: italic;
+  letter-spacing: 1px;
 }
 
-.game-start-modal_modal-mask-img {
-  margin: 0 auto;
-  height: 100%;
-  width: 100%;
-  max-width: 12rem;
+.character-wrapper__character-name_modal {
+  background: rgb(181, 128, 255);
+  background: linear-gradient(
+    176deg,
+    rgba(181, 128, 255, 1) 0%,
+    rgba(71, 23, 88, 1) 100%
+  );
+
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(1.75px 1.75px #333);
+}
+
+.btn {
+  background: rgb(3, 215, 221);
+  background: linear-gradient(
+    145deg,
+    rgba(3, 215, 221, 1) 0%,
+    rgba(33, 193, 196, 1) 25%,
+    rgba(55, 150, 221, 1) 50%,
+    rgba(26, 112, 185, 1) 75%,
+    rgba(2, 81, 148, 1) 100%
+  );
+  background-size: 200%;
+  background-position: left;
+
+  font-weight: bold;
+  color: var(--black);
+  border-color: var(--black);
+  transition: background-position 0.5s, color 0.3s;
+}
+.btn_start-game {
+  padding: 0.3rem 1.5rem;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  border-radius: 1.2rem;
+}
+
+.btn:where(:hover, :active) {
+  background-position: 99%;
+  color: var(--water-blue);
 }

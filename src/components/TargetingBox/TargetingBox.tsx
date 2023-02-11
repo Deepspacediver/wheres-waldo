@@ -96,8 +96,8 @@ const TargetingBox = ({
         {
           right: targetingBoxPosition.right,
           bottom: targetingBoxPosition.bottom,
-          left,
-          top,
+          left: targetingBoxPosition.left,
+          top: targetingBoxPosition.top,
           name: characterName,
         },
       ]);
@@ -137,16 +137,16 @@ const TargetingBox = ({
           ref={targetingBoxRef}
         >
           <CSSTransition
-            classNames="targeting-box_list-wrapper"
+            classNames="targeting-box__list-wrapper"
             in={isActive}
-            timeout={80}
+            timeout={85}
             unmountOnExit
             nodeRef={divWrappRef}
             appear
           >
             {/* Required nodeRef canncels transition on UL, wrapper fixes it */}
-            <div className="targeting-box_list-wrapper" ref={divWrappRef}>
-              <ul className="targeting-box_list" onClick={validateTarget}>
+            <div className="targeting-box__list-wrapper" ref={divWrappRef}>
+              <ul className="targeting-box__list" onClick={validateTarget}>
                 {helmetLi}
                 {richardLi}
                 {rasmusLi}

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, memo, MouseEvent } from "react";
 import Overlay from "../Overlay/Overlay";
 import SubmitScore from "../SubmitScore/SubmitScore";
 import Scoreboard from "../Scoreboard/Scoreboard";
+import { CSSTransition } from "react-transition-group";
 import "./Stopwatch.styles.css";
 
 type Timer = ReturnType<typeof setInterval>;
@@ -15,7 +16,8 @@ const Stopwatch = memo(({ isGameOver, canStartGame }: StopwatchProps) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [isScoreSubmit, setIsScoreSubmit] = useState(false);
   const intervalRef = useRef<Timer | null>(null);
-  console.log("stopwatch");
+  const nodeRef = useRef<HTMLDivElement | null>(null);
+  // console.log("stopwatch");
 
   useEffect(() => {
     const startStopwatch = () => {
@@ -44,24 +46,33 @@ const Stopwatch = memo(({ isGameOver, canStartGame }: StopwatchProps) => {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className="stopwatch">
         {minutes < 10 ? "0" + minutes : minutes}:
         {seconds < 10 ? "0" + seconds : seconds}
       </div>
-      {isGameOver() && (
-        <Overlay>
-          {!isScoreSubmit ? (
-            <SubmitScore
-              time={timePassed}
-              setIsScoreSubmit={setIsScoreSubmit}
-            />
-          ) : (
-            <Scoreboard />
-          )}
-        </Overlay>
-      )}
-    </div>
+      {
+        <CSSTransition
+          in={isGameOver()}
+          timeout={400}
+          unmountOnExit
+          appear
+          classNames="overlay"
+          nodeRef={nodeRef}
+        >
+          <Overlay ref={nodeRef}>
+            {!isScoreSubmit ? (
+              <SubmitScore
+                time={timePassed}
+                setIsScoreSubmit={setIsScoreSubmit}
+              />
+            ) : (
+              <Scoreboard />
+            )}
+          </Overlay>
+        </CSSTransition>
+      }
+    </>
   );
 });
 export default Stopwatch;

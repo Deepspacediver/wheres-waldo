@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Scoreboard.styles.css";
 import { db } from "../../firebase/firebase-config";
 import { query, collection, limit, orderBy, getDocs } from "firebase/firestore";
@@ -37,15 +37,16 @@ const Scoreboard = () => {
   }, []);
 
   return (
-    <div>
-      <ul onClick={() => console.log(topPlayers)}>
+    <div className="scoreboard">
+      <h3 className="scoreboard__heading" >Top 5 Players :</h3>
+      <ol className="scoreboard__list" onClick={() => console.log(topPlayers)}>
         {topPlayers.length &&
           topPlayers.map(({ name, time }, i) => (
-            <li key={i}>
+            <li className="scoreboard__item" key={i}>
               <PlayerScore name={name} time={time} />
             </li>
           ))}
-      </ul>
+      </ol>
     </div>
   );
 };

@@ -1,0 +1,30 @@
+.scoreboard{
+  background: var(--gradient-bg);
+  padding: 1rem;
+  border-radius: 1rem;
+  color: var(--water-blue);
+  font-weight: bold;
+  margin: auto;
+  width: 90%;
+  max-width: 30rem;
+  min-width: 19rem;
+  min-height: 192px;
+
+}
+
+.scoreboard__heading{
+  color: var(--orange);
+  text-shadow: var(--para-text-shadow);
+}
+
+.scoreboard__list{
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+.scoreboard__item{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+

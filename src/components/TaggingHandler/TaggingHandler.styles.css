@@ -1,6 +1,10 @@
 .image-wrapper {
   position: relative;
-  /* overflow: hidden; */
-  width: fit-content;
+  overflow: hidden;
   cursor: pointer;
+  margin: 0 auto;
+}
+
+.main-background-img {
+  width: 100%;
 }

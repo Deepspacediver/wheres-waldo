@@ -7,7 +7,7 @@ interface ImageProps {
 }
 
 const Image = ({ src, alt, name }: ImageProps) => {
-  return <img src={src} alt={alt} className="hotline-miami-img" />;
+  return <img src={src} alt={alt} className={`${name}-img`} />;
 };
 
 export default Image;

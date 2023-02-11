@@ -1,7 +1,15 @@
 .found-tag {
   position: absolute;
   color: wheat;
-  transform: translate(-50%, -50%);
-  background-color: black;
-  padding: .5rem;
+  /* transform: translate(-50%, 50%); */
+  transform: translate(-25%, 25%);
+  background-color: var(--dark-purple);
+  color: var(--water-blue);
+  padding: 0.4rem;
+  border-radius: 2rem;
+
+  font-size: clamp(0.4rem, 2vw, 1rem);
+  font-weight: bold;
+
+  pointer-events: none;
 }

@@ -1,11 +1,27 @@
+@font-face {
+  font-family: "RetroComputer";
+  src: url("./assets//fonts//retro_computer.woff2") format("woff2"),
+    url("./assets//fonts//retro_computer.woff") format("woff");
+}
+
 :root {
   --neon-pink: hsl(316, 90%, 53%);
   --soft-pink: hsl(327, 90%, 76%);
   --dark-purple: hsl(284, 59%, 22%);
   --water-blue: hsl(187, 61%, 74%);
+  --water-blue-transparent: hsla(187, 61%, 74%, .8);
   --yellow: hsl(50, 100%, 71%);
   --orange: hsl(28, 88%, 59%);
   --black: hsl(340, 7%, 17%);
+
+  --gradient-bg: radial-gradient(
+    circle,
+    rgba(184, 53, 148, 1) 0%,
+    rgba(71, 23, 88, 1) 100%
+  );
+
+  --para-text-shadow: 1px 1px 0px black, 2px 2px 0px black, 3px 3px 0px black;
+  font-family: "RetroComputer", sans-serif;
 }
 
 *,
@@ -19,7 +35,7 @@
 html,
 body {
   height: 100%;
-  font-family: "DiscoDuck";
+  background-color: #7d3a94;
 }
 body {
   line-height: 1.5;
@@ -57,6 +73,10 @@ h6 {
   isolation: isolate;
 }
 
+p {
+  letter-spacing: 2px;
+}
+
 ul,
 ol {
   list-style: none;
@@ -85,6 +105,3 @@ a {
   color: transparent;
 }
 
-.font-shadow__small {
-  text-shadow: 1px 1px 0px black, 2px 2px 0px black, 3px 3px 0px black;
-}

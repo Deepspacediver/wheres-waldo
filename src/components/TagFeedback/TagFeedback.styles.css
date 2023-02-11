@@ -1,6 +1,14 @@
 .tag-feedback {
-  position: fixed;
-  left: 0;
-  top: 0;
+  position: absolute;
+  left: 50%;
+  top: 110%;
   z-index: 2;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  padding: .5rem;
+  border-radius: 2rem;
+  font-weight: bold;
+
+  font-size: clamp(.65rem, 2vw, 1rem);
 }

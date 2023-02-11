@@ -13,62 +13,62 @@ interface GameStartModalProps {
 const GameStartModal = ({ setCanStartGame }: GameStartModalProps) => {
   return (
     <div className="game-start-modal">
-      <figure className="game-start-modal_title-wrapper">
+      <figure className="game-start-modal__title-wrapper">
         <Image
           src={HotlineTitle}
           alt="hotline miami title"
           name="hotline-miami-title"
         />
       </figure>
-      <section className="game-start-modal_instructions">
-        <p className="game-start-modal_para font-shadow__small">
-          Welcome to the Hotline Miami themed game of Where's Waldo.
+      <section className="game-start-modal__instructions">
+        <p className="game-start-modal__para">
+          Welcome to the Hotline Miami themed game of Where's Waldo!
         </p>
-        <p className="game-start-modal_para font-shadow__small">
+        <p className="game-start-modal__para">
           The goal of the game is to find 3 characters represented below.
         </p>
-        <p className="game-start-modal_para font-shadow__small">
-          Once you start the game you will be timed.{" "}
+        <p className="game-start-modal__para">
+          Once you start the game you will be timed.
         </p>
-        <p className="game-start-modal_para font-shadow__small">
-          Find all the characters and submit your score.
+        <p className="game-start-modal__para">
+          Find every character and submit your score.
         </p>
       </section>
-      <section className="game-start-modal_characters">
-        <figure className="game-start-modal_character-wrapper">
+      <section className="game-start-modal__characters">
+        <figure className="character-wrapper character-wrapper_modal">
           <Image
             src={HelmetImage}
             alt="helmet mask image"
-            name="game-start-modal_modal-mask"
+            name="character-wrapper__modal-mask"
           />
-          <figcaption className="font-shadow__small game-start-modal_character-name">
+          <figcaption className="character-wrapper__character-name character-wrapper__character-name_modal">
             Helmet
           </figcaption>
         </figure>
-        <figure className="game-start-modal_character-wrapper">
+        <figure className="character-wrapper character-wrapper_modal">
           <Image
             src={RasmusImage}
             alt="rasmus mask image"
-            name="game-start-modal_modal-mask"
+            name="character-wrapper__modal-mask"
           />
-          <figcaption className="font-shadow__small game-start-modal_character-name">
+          <figcaption className="character-wrapper__character-name character-wrapper__character-name_modal">
             Rasmus
           </figcaption>
         </figure>
-        <figure className="game-start-modal_character-wrapper">
+        <figure className="character-wrapper character-wrapper_modal">
           <Image
             src={RichardImage}
             alt="richard mask image"
-            name="game-start-modal_modal-mask"
+            name="character-wrapper__modal-mask"
           />
-          <figcaption className="font-shadow__small game-start-modal_character-name">
+          <figcaption className="character-wrapper__character-name character-wrapper__character-name_modal">
             Richard
           </figcaption>
         </figure>
       </section>
 
       <button
-        className="btn btn__start-game"
+        className="btn btn_start-game"
         onClick={() => setCanStartGame(true)}
       >
         Start

@@ -12,6 +12,7 @@ import TargetingBox from "../TargetingBox/TargetingBox";
 import Stopwatch from "../Stopwatch/Stopwatch";
 import FoundTag from "../FoundTag/FoundTag";
 import TagFeedback from "../TagFeedback/TagFeedback";
+import Header from "../Header/Header";
 import hotlineBackground from "../../assets/images/main-image/hotline-miami-image.webp";
 import "./TaggingHandler.styles.css";
 
@@ -44,8 +45,10 @@ const TaggingHandler = ({ canStartGame }: TaggingHandlerProps) => {
   const handleTag = (e: MouseEvent) => {
     const target = e.target as HTMLImageElement;
     setIsActive((prevState) => !prevState);
+    if (isActive) return;
     if (target.tagName !== "IMG") return;
-    console.log(target);
+    // console.log(target);
+    // console.log({targetParent})
     setCursorCoords({
       left: e.clientX - target.getBoundingClientRect().left,
       top: e.clientY - target.getBoundingClientRect().top,
@@ -76,7 +79,24 @@ const TaggingHandler = ({ canStartGame }: TaggingHandlerProps) => {
   const { left, top } = cursorCoords;
   return (
     <>
-      <div className="image-wrapper" onClick={handleTag}>
+      <Header>
+        <Stopwatch isGameOver={isGameOver} canStartGame={canStartGame} />
+        {feedbackStyle && (
+          <TagFeedback
+            isCorrect={feedbackStyle.isCorrect}
+            characterName={feedbackStyle.characterName}
+            TargetBoxLeftCoord={feedbackStyle.TargetBoxLeftCoord}
+          />
+        )}
+      </Header>
+      <div
+        className="image-wrapper"
+        onClick={(e) => {
+          handleTag(e);
+          const target = e.target as HTMLImageElement;
+          console.log(target.getBoundingClientRect());
+        }}
+      >
         <Image
           src={hotlineBackground}
           alt="hotline miami characters"
@@ -103,14 +123,6 @@ const TaggingHandler = ({ canStartGame }: TaggingHandlerProps) => {
             );
           })}
       </div>
-      <Stopwatch isGameOver={isGameOver} canStartGame={canStartGame} />
-      {feedbackStyle && (
-        <TagFeedback
-          isCorrect={feedbackStyle.isCorrect}
-          characterName={feedbackStyle.characterName}
-          TargetBoxLeftCoord={feedbackStyle.TargetBoxLeftCoord}
-        />
-      )}
     </>
   );
 };

@@ -1,0 +1,44 @@
+.submit-modal {
+  background: var(--gradient-bg);
+  color: var(--water-blue);
+  text-shadow: var(--para-text-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.submit-modal__result {
+  margin-bottom: 0.7rem;
+}
+
+.submit-modal__time {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+.submit-modal__name-input {
+  background-color: var(--water-blue);
+  color: var(--black);
+  outline-color: var(--black);
+
+  padding: 0.2rem;
+  border-radius: 1rem;
+}
+.submit-modal__name-input::placeholder {
+  color: var(--black);
+  filter: contrast(50%);
+}
+
+.btn_submit {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 1rem;
+  width: fit-content;
+  margin: auto;
+  /* font-size: 1.2rem; */
+}
