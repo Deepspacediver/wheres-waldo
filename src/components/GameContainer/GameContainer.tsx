@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import TaggingHandler from "../TaggingHandler/TaggingHandler";
 import Overlay from "../Overlay/Overlay";
 import GameStartModal from "../GameStartModal/GameStartModal";

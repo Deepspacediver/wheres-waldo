@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./Scoreboard.styles.css";
 import { db } from "../../firebase/firebase-config";
 import { query, collection, limit, orderBy, getDocs } from "firebase/firestore";

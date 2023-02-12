@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, memo, MouseEvent } from "react";
+import { useState, useRef, useEffect, memo} from "react";
 import Overlay from "../Overlay/Overlay";
 import SubmitScore from "../SubmitScore/SubmitScore";
 import Scoreboard from "../Scoreboard/Scoreboard";

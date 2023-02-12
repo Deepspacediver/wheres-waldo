@@ -2,7 +2,6 @@ import React, { useRef, MouseEvent, Dispatch, SetStateAction } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 import { convertTime } from "../../helpers/utilFunctions";
-import { CSSTransition } from "react-transition-group";
 import "./SubmitScore.styles.css";
 
 interface SubmitScoreProps {
