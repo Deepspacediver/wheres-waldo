@@ -1,8 +1,9 @@
 .image-wrapper {
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   margin: 0 auto;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .main-background-img {
