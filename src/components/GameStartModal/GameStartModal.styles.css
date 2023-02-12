@@ -2,20 +2,26 @@
   background: rgb(184, 53, 148);
   background: var(--gradient-bg);
   max-width: 800px;
+  min-width: 310px;
   border-radius: 3rem;
   text-align: center;
   padding: 1rem;
-  margin: 2rem;
-}
-.game-start-modal__title-wrapper {
+  margin: 1rem;
+  height: 100%;
+  overflow-y: auto;
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.game-start-modal__title-wrapper {
   align-items: center;
-  max-width: 600px;
+  max-width: 450px;
   padding-top: 0.2rem;
   margin: 0 auto;
   margin-bottom: 1rem;
 }
+
 .game-start-modal__instructions {
   margin-bottom: 2rem;
 }
@@ -98,9 +104,18 @@
   padding: 0.3rem 1.5rem;
   font-size: clamp(0.9rem, 3vw, 1.3rem);
   border-radius: 1.2rem;
+  max-width: 150px;
+  margin: 0 auto;
 }
 
 .btn:where(:hover, :active) {
   background-position: 99%;
   color: var(--water-blue);
+}
+
+@media (min-height: 671px) {
+  .game-start-modal {
+    max-height: 700px;
+    justify-content: space-evenly;
+  }
 }
