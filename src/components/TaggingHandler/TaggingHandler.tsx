@@ -47,8 +47,6 @@ const TaggingHandler = ({ canStartGame }: TaggingHandlerProps) => {
     setIsActive((prevState) => !prevState);
     if (isActive) return;
     if (target.tagName !== "IMG") return;
-    // console.log(target);
-    // console.log({targetParent})
     setCursorCoords({
       left: e.clientX - target.getBoundingClientRect().left,
       top: e.clientY - target.getBoundingClientRect().top,
